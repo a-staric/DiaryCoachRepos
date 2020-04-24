@@ -2,17 +2,17 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\StudentDistance;
+use App\CompetitionResult;
 use Faker\Generator as Faker;
 
-$factory->define(StudentDistance::class, function (Faker $faker) {
+$factory->define(CompetitionResult::class, function (Faker $faker) {
         $studentIds = App\Student::all('id')->toArray();
         $distaceIds = App\Distance::all('id')->toArray();
+        $competitionIds = App\Competition::all('id')->toArray();
         return [
             'student_id' => array_rand($studentIds) + 1,
             'distance_id' => array_rand($distaceIds) + 1,
             'result_time' => $faker->time(),
-            'result_date' => $faker->date(),
+            'competition_id' => array_rand($competitionIds) + 1,
         ];
-
 });

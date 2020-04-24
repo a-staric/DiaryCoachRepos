@@ -18,16 +18,10 @@ class CreateStudentsTable extends Migration
             $table->string('last_name');
             $table->string('first_name');
             $table->date('dob');
-            $table->double('height',8,2)->unsigned();
-            $table->double('weight',8,2)->unsigned();
-            $table->text('description');
-
-            
+            $table->double('height',8,2)->unsigned()->nullable();
+            $table->double('weight',8,2)->unsigned()->nullable();
+            $table->text('description')->nullable();
             $table->timestamps();
-
-            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-
-
         });
     }
 

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDistancesTable extends Migration
+class CreateTrainingKindsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,10 @@ class CreateDistancesTable extends Migration
      */
     public function up()
     {
-        Schema::create('distances', function (Blueprint $table) {
+        Schema::create('training_kinds', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('name')->unique();
+            $table->text('description')->nullable();
             $table->timestamps();
         });
     }
@@ -27,6 +28,6 @@ class CreateDistancesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('distances');
+        Schema::dropIfExists('training_kinds');
     }
 }

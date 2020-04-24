@@ -4,16 +4,11 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Distance extends Model
+class Competition extends Model
 {
     protected $fillable = [
-        'name',
+        'name','event_date', 'event_link', 'place', 'description',
     ];
-
-    public function student_distances()
-    {
-        return $this->hasMany(StudentDistance::class);
-    }
 
     public function competition_results()
     {

@@ -1946,9 +1946,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['student_info'],
   data: function data() {
@@ -1960,8 +1957,10 @@ __webpack_require__.r(__webpack_exports__);
     this.update();
   },
   methods: {
-    update: function update() {
-      console.log(this.student);
+    update: function update() {//  console.log(this.student);
+    },
+    userProfile: function userProfile(student_info) {
+      return window.location.href = '/student/' + student_info.id;
     }
   }
 });
@@ -38054,11 +38053,27 @@ var render = function() {
                 "md-card-actions",
                 { attrs: { "md-alignment": "space-between" } },
                 [
-                  _c("div", [_c("md-button", [_vm._v("Открыть профиль")])], 1),
+                  _c(
+                    "div",
+                    [
+                      _c(
+                        "md-button",
+                        {
+                          on: {
+                            click: function($event) {
+                              return _vm.userProfile(_vm.student_info)
+                            }
+                          }
+                        },
+                        [_vm._v("Открыть профиль")]
+                      )
+                    ],
+                    1
+                  ),
                   _vm._v(" "),
                   _c(
                     "md-card-expand-trigger",
-                    [_c("md-button", [_vm._v("Читаль больше")])],
+                    [_c("md-button", [_vm._v("Читать больше")])],
                     1
                   )
                 ],
@@ -38072,13 +38087,8 @@ var render = function() {
                     _vm._v(
                       "\n            " +
                         _vm._s(_vm.student_info.description) +
-                        "\n          "
-                    ),
-                    _c("div", [
-                      _vm._v(
-                        "\n            Дистанции: 100 м, 150 м\n          "
-                      )
-                    ])
+                        "\n        "
+                    )
                   ])
                 ],
                 1
@@ -83470,8 +83480,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\xampp\htdocs\coach\coach\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\xampp\htdocs\coach\coach\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\xampp\htdocs\coach\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\xampp\htdocs\coach\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -16,8 +16,19 @@ class Student extends Model
         'description',
         'distance_id'
     ];
+
     public function student_distances()
     {
         return $this->hasMany(StudentDistance::class);
+    }
+
+    public function competition_results()
+    {
+        return $this->hasMany(CompetitionResult::class);
+    }
+
+    public function plans()
+    {
+        return $this->hasMany(Plan::class);
     }
 }

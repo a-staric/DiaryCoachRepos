@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-dark p-0">
+<nav class="navbar navbar-expand-lg sticky-bottom navbar-light bg-dark p-0">
     <md-toolbar class="md-primary">
         <md-button class="md-icon-button bg-danger m-2">
             <md-icon>directions_run</md-icon>
@@ -15,27 +15,12 @@
                 <div class=" collapse navbar-collapse" id="navbarTop">
                     <ul class="navbar-nav ml-auto">
                         @guest
-                        <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/') }}">
-                                Новости
-                            </md-button>
-                        </li>
-                        <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/') }}">
-                                Галерея
-                            </md-button>
-                        </li>
-                        <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/') }}">
-                                Соревнования
-                            </md-button>
-                        </li>
                         <li class="nav-item ">
                             <md-button class="nav-link" href="{{ route('login') }}">
                                 {{ __('Вход') }}
                             </md-button>
+
                         </li>
-                        
                         {{-- @if (Route::has('register'))
                         <li class="nav-item">
                             <md-button class="nav-link" href="{{ route('register') }}">
@@ -45,23 +30,9 @@
                         @endif --}}
                         @else
                         <li class="nav-item">
-                            <md-menu class="h-100 d-flex">
-                                <md-button class="navbar-link m-auto"  md-menu-trigger>Воспитанники</md-button>
-                          
-                                <md-menu-content>
-                                  <md-menu-item>
-                                    <md-button  href="{{ url('/student') }}">
-                                        Просмотр воспитанников
-                                    </md-button>
-                                  </md-menu-item>
-                                  <md-menu-item>
-                                    <md-button  href="{{ url('/student/create') }}">
-                                        Создание воспитанника
-                                    </md-button>
-                                  </md-menu-item>
-                                </md-menu-content>
-                              </md-menu>
-                              
+                            <md-button class="navbar-link" href="{{ url('/student') }}">
+                                Воспитанники
+                            </md-button>
                         </li>
                         <li class="nav-item">
                             <md-button class="navbar-link" href="{{ url('/') }}">

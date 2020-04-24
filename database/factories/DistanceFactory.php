@@ -8,6 +8,6 @@ use Faker\Generator as Faker;
 $factory->define(Distance::class, function (Faker $faker) {
 
     return [
-        'name' => $faker->name,
+        'name' => $faker->unique()->sentence(3, true),
     ];
 });

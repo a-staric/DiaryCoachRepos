@@ -19,19 +19,16 @@
 
         <md-card-actions md-alignment="space-between">
             <div>
-                <md-button>Открыть профиль</md-button>
+                <md-button @click="userProfile(student_info)">Открыть профиль</md-button>
             </div>
             <md-card-expand-trigger>
-                <md-button>Читаль больше</md-button>
+                <md-button>Читать больше</md-button>
             </md-card-expand-trigger>
         </md-card-actions>
 
         <md-card-expand-content>
           <md-card-content>
               {{student_info.description}}
-            <div>
-              Дистанции: 100 м, 150 м
-            </div>
           </md-card-content>
         </md-card-expand-content>
       </md-card-expand>
@@ -55,8 +52,11 @@ export default {
   methods: {
 
      update: function(){
-         console.log(this.student);
-     }
+        //  console.log(this.student);
+     },
+     userProfile(student_info){
+        return window.location.href = '/student/'+student_info.id;
+      }
   }
 
 }

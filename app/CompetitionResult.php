@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class StudentDistance extends Model
+class CompetitionResult extends Model
 {
     protected $fillable = [
         'student_id',
         'distance_id',
         'result_time',
-        'result_date'
+        'competition_id'
     ];
 
     public function students()
@@ -21,5 +21,10 @@ class StudentDistance extends Model
     public function distances()
     {
         return $this->belongsTo(Distance::class);
+    }
+
+    public function competitions()
+    {
+        return $this->belongsTo(Competition::class);
     }
 }

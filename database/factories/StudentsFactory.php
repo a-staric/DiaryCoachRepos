@@ -12,6 +12,6 @@ $factory->define(Student::class, function (Faker $faker) {
         'dob' => $faker->date(),
         'height' => rand(140, 200),
         'weight' => rand(40, 90),
-        'description'=>$faker->text(300)
+        'description'=>$faker->realText(300)
     ];
 });
