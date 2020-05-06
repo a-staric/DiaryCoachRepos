@@ -3,7 +3,6 @@
 @section('content')
         <div class="col-md-12">
        
-
         @if(session('success'))
               
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -23,16 +22,16 @@
 
                 <md-toolbar class="md-primary" md-fixed-header>
                     <div class="md-toolbar-row">
-                        <h3 class="md-title">Воспитанники</h3>
+                        <h3 class="md-title">Достижения</h3>
                     </div>
                 </md-toolbar>
 
                 @foreach ($items as $item )
 
-                        <avatar-student :student_info='@json($item)'></avatar-student>
+                        <progress-student :progress_info='@json($item)'></progress-student>
 
                 @endforeach
             </div>
-            {{ $items->links() }}
+            {{-- {{ $items->links() }} --}}
         </div>
 @endsection

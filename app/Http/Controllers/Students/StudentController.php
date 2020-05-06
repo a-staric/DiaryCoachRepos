@@ -8,6 +8,8 @@ use App\StudentDistance;
 use Illuminate\Http\Request;
 //Для работы с БД
 use Illuminate\Support\Facades\DB;
+//Requset - проверка полей
+use App\Http\Requests\StoreStudent;
 
 class StudentController extends Controller
 {
@@ -37,7 +39,6 @@ class StudentController extends Controller
     public function create()
     {
         $item = new Student();
-        // dd($item);
         return view('students.create',
                compact('item'));
     }
@@ -48,18 +49,15 @@ class StudentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreStudent $request)
     {
-        $data = $request->input();
+        $data = $request->validated();
         $item = (new Student())->create($data);
         $item->save();
         if($item->exists){
-            // return redirect()->route('blog.admin.categories.edit', [$item->id])
-            //         ->with(['success'=>'Успешно сохранено']);
-            return redirect()->route('student.index');
+            return redirect()->route('student.index')
+                    ->with(['success'=>'Запись добавлена успешно: перейти','l_name'=>$item->last_name,'f_name'=>$item->first_name,'id'=>$item->id]);
         }else{
-            // return back()->withErrors(['msg' => 'Ошибка сохранения'])
-            //         ->withInput();
             return back();
         }
     }
@@ -72,15 +70,15 @@ class StudentController extends Controller
      */
     public function show($id)
     {
-        
+
         $student = Student::findOrFail($id);
 
         $records = DB::table('student_distances')
         ->join('distances', 'student_distances.distance_id', '=', 'distances.id')
-        ->select('distances.name', 'student_distances.result_time', 'student_distances.result_date')
+        ->select('student_distances.id', 'distances.name', 'student_distances.result_time', 'student_distances.result_date')
         ->where('student_id', $id)
         ->get()->toArray();
-        
+
         $competitions = DB::table('competitions')
         ->join('competition_results', 'competitions.id', '=', 'competition_results.competition_id')
         ->join('distances', 'competition_results.distance_id', '=', 'distances.id')
@@ -107,7 +105,6 @@ class StudentController extends Controller
     public function edit($id)
     {
         $item = Student::findOrFail($id);
-        // dd($item);
         return view('students.edit', compact('item'));
     }
 
@@ -118,21 +115,17 @@ class StudentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(StoreStudent $request, $id)
     {
-        $item = Student::find($id);
-        if(empty($item)){
-            return back()->withErrors(['msg'=>"Запись id = [{$id}] не найдена"])->withInput();
-        }
-
-        $data = $request->all();
+        // dd($request);
+        $item = Student::findOrFail($id);
+        $data = $request->validated();
         $result = $item->update($data);
 
         if($result){
-            return redirect()->route('student.show', $item->id)
-                             ->with(['success'=>'Успешно сохранено']);
+            return redirect()->route('student.show', $item->id);
         } else{
-            return back()->withErrors(['msg' => 'Ошибка сохранения'])->withInput();
+            return back();
         }
     }
 
@@ -146,16 +139,15 @@ class StudentController extends Controller
     {
         $item = Student::find($id);
         if(empty($item)){
-            return back()->withErrors(['msg'=>"Запись id = [{$id}] не найдена"])->withInput();
+            return back()->withErrors(['msg_delete'=>"Запись с  id = [{$id}] не найдена!"])->withInput();
         }
 
         $result = $item->delete();
 
         if($result){
-            return redirect()->route('student.index')
-                             ->with(['success'=>'Успешно сохранено']);
+            return redirect()->route('student.index');
         } else{
-            return back()->withErrors(['msg' => 'Ошибка сохранения'])->withInput();
+            return back();
         }
     }
 }

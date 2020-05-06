@@ -18,10 +18,18 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-
+//Воспитанники
 Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
 
     Route::resource('student', 'StudentController')->names('student');
+
+});
+//Достижения
+Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
+
+    Route::resource('progress', 'StudentDistanceController')
+    ->except(['create','update','edit'])
+    ->names('progress');
 
 });
 

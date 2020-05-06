@@ -18,6 +18,7 @@ Vue.use(VueMaterial)
 
 Vue.component('my-student', require('./components/StudentIndex.vue').default);
 Vue.component('avatar-student', require('./components/AvatarStudent.vue').default);
+Vue.component('progress-student', require('./components/ProgressStudent.vue').default);
 
 
 
