@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Students;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Arr;
 //
 use App\StudentDistance;
+use App\Student;
 use Illuminate\Support\Facades\DB;
 use App\Http\Requests\StoreProgress;
 
@@ -21,16 +23,27 @@ class StudentDistanceController extends Controller
     //Вывод всех рекордов
     public function index()
     {
+        $distances = DB::table('distances')
+            ->select('distances.id','distances.name')
+            ->get()->toArray();
+
+
+
+        foreach($distances as $distance)
+        {
+            $name = $distance->name;
+            $record = DB::table('students')
+            ->join('student_distances', 'students.id' , '=', 'student_distances.student_id')
+            ->select('students.id','students.last_name', 'students.first_name', 'student_distances.result_time', 'student_distances.result_date')
+            ->where('student_distances.distance_id', '=', $distance->id)
+            ->orderBy('student_distances.result_time')
+            ->limit(3)
+            ->get()->toArray();
+
+            $items[] =(object) ['name' => $name, 'records' => $record];
+        }
+
         // $items = StudentDistance::paginate(5);
-
-
-         $items = DB::table('students')
-        ->join('student_distances', 'students.id' , '=', 'student_distances.student_id')
-        ->join('distances', 'student_distances.distance_id', '=', 'distances.id')
-        ->select('students.id','students.last_name','students.first_name','distances.name', 'student_distances.result_time', 'student_distances.result_date')
-        ->orderByDesc('last_name')
-        ->get()->toArray();
-        // dd($items);
 
         return view('studentdistance.index', compact('items'));
     }
@@ -58,14 +71,17 @@ class StudentDistanceController extends Controller
     }
 
     public function show($id)
-    {   $student_id = $id;
+    {
+
+        $student = Student::findOrFail($id);
+
         $distances = DB::table('distances')
         ->select('distances.name', 'distances.id')
-        ->orderByDesc('name')
+        ->orderBy('name')
         ->get()->toArray();
 
         $item = new StudentDistance();
-        return view('studentdistance.create', compact('item','student_id','distances'));
+        return view('studentdistance.create', compact('item','student','distances'));
     }
 
 

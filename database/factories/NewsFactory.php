@@ -2,17 +2,15 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use App\Competition;
+use App\News;
 use Faker\Generator as Faker;
 
-$factory->define(Competition::class, function (Faker $faker) {
+$factory->define(News::class, function (Faker $faker) {
     $AlbumsIds = App\Album::all('id')->toArray();
     return [
-        'name' => $faker->unique()->sentence(5, true),
-        'event_date' => $faker->date(),
-        'event_link' => $faker->url,
-        'place' => $faker->address,
+        'title' => $faker->unique()->sentence(5, true),
         'description' => $faker->realText(300),
+        'news_date' => $faker->date(),
         'album_id' => array_rand($AlbumsIds) + 1,
     ];
 });

@@ -2,16 +2,8 @@
   <div>
    <md-card>
       <md-card-header>
-
-        <md-avatar>
-            <md-button class="md-icon-button bg-primary">
-                <md-icon>person</md-icon>
-            </md-button>
-        </md-avatar>
-
-        <div class="md-title">{{progress_info.last_name}} {{progress_info.first_name}}</div>
-        <div class="md-title">Достижения:</div>
-        <div class="md-subhead right">{{progress_info.name}} {{progress_info.result_time}} {{progress_info.result_date}}</div>
+        <div class="md-title">{{progress_info.name}}</div>
+        <div class="md-subhead ">{{progress_info.name}} {{progress_info.result_time}} {{progress_info.result_date}}</div>
       </md-card-header>
 
 
@@ -21,7 +13,7 @@
             <div>
                 <md-button @click="userProfile(progress_info)">Открыть профиль</md-button>
             </div>
-            
+
         </md-card-actions>
 
 

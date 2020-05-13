@@ -32,4 +32,20 @@ Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
     ->names('progress');
 
 });
+//Дистанции
+Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
+
+    Route::resource('distance', 'DistanceController')
+    ->except(['show'])
+    ->names('distance');
+
+});
+
+//Соревнования
+Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
+
+    Route::resource('competition', 'CompetitionController')
+    ->names('competition');
+
+});
 

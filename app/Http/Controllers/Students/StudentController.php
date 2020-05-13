@@ -117,7 +117,6 @@ class StudentController extends Controller
      */
     public function update(StoreStudent $request, $id)
     {
-        // dd($request);
         $item = Student::findOrFail($id);
         $data = $request->validated();
         $result = $item->update($data);

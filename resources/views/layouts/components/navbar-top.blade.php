@@ -26,7 +26,7 @@
                             </md-button>
                         </li>
                         <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/') }}">
+                            <md-button class="navbar-link" href="{{ url('/competition') }}">
                                 Соревнования
                             </md-button>
                         </li>
@@ -35,7 +35,7 @@
                                 {{ __('Вход') }}
                             </md-button>
                         </li>
-                        
+
                         {{-- @if (Route::has('register'))
                         <li class="nav-item">
                             <md-button class="nav-link" href="{{ route('register') }}">
@@ -47,7 +47,7 @@
                         <li class="nav-item">
                             <md-menu class="h-100 d-flex">
                                 <md-button class="navbar-link m-auto"  md-menu-trigger>Воспитанники</md-button>
-                          
+
                                 <md-menu-content>
                                   <md-menu-item>
                                     <md-button  href="{{ url('/student') }}">
@@ -59,14 +59,34 @@
                                         Создание воспитанника
                                     </md-button>
                                   </md-menu-item>
+                                  <md-menu-item>
+                                    <md-button  href="{{ url('/progress') }}">
+                                        Рекорды
+                                    </md-button>
+                                  </md-menu-item>
                                 </md-menu-content>
                               </md-menu>
-                              
+
                         </li>
                         <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/') }}">
-                                Планы
-                            </md-button>
+                            <md-menu class="h-100 d-flex">
+                                <md-button class="navbar-link m-auto"  md-menu-trigger>Планы</md-button>
+                                <md-menu-content>
+
+                                    <md-menu-item>
+                                        <md-button href="{{ url('/distance') }}">
+                                            Просмотр дистанций
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button href="{{ url('/distance/create') }}">
+                                            Создание дистанции
+                                        </md-button>
+                                    </md-menu-item>
+
+                                </md-menu-content>
+                            </md-menu>
+
                         </li>
                         <li class="nav-item">
                             <md-button class="navbar-link" href="{{ url('/') }}">
@@ -79,33 +99,22 @@
                             </md-button>
                         </li>
                         <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/') }}">
+                            <md-button class="navbar-link" href="{{ url('/competition') }}">
                                 Соревнования
                             </md-button>
                         </li>
-                            {{-- <span class="navbar-brand">{{Auth::user()->first_name }}</span> --}}
-                            <md-button class="md-icon-button dropdown-toggle" href="#" id="navbarDropdown"
-                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-
-
-                                    <md-icon>person</md-icon>
-
+                        <li class="nav-item">
+                            <md-button class="d-flex" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                          document.getElementById('logout-form').submit();">
+                                {{__('Выход')}}
                             </md-button>
-
-
-
-                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}"
-                                   onclick="event.preventDefault();
-                                                 document.getElementById('logout-form').submit();">
-                                    {{ __('Выход') }}
-                                </a>
-
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                    @csrf
-                                </form>
-                            </div>
                         </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                    @csrf
+                        </form>
+
+
                     @endguest
                     </ul>
         </div>

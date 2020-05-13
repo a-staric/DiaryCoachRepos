@@ -20,11 +20,13 @@ class CreateCompetitionResultsTable extends Migration
             $table->unsignedBigInteger('distance_id');
             $table->time('result_time',0);
             $table->unsignedBigInteger('competition_id');
+
             $table->timestamps();
-            
+
             $table->foreign('student_id')->references('id')->on('students')->onDelete('cascade');
             $table->foreign('distance_id')->references('id')->on('distances')->onDelete('cascade');
             $table->foreign('competition_id')->references('id')->on('competitions')->onDelete('cascade');
+            
         });
     }
 

@@ -10,7 +10,8 @@ class CompetitionResult extends Model
         'student_id',
         'distance_id',
         'result_time',
-        'competition_id'
+        'competition_id',
+        
     ];
 
     public function students()

@@ -2000,14 +2000,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['progress_info'],
   data: function data() {
@@ -38193,44 +38185,21 @@ var render = function() {
       _c(
         "md-card",
         [
-          _c(
-            "md-card-header",
-            [
-              _c(
-                "md-avatar",
-                [
-                  _c(
-                    "md-button",
-                    { staticClass: "md-icon-button bg-primary" },
-                    [_c("md-icon", [_vm._v("person")])],
-                    1
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c("div", { staticClass: "md-title" }, [
-                _vm._v(
-                  _vm._s(_vm.progress_info.last_name) +
-                    " " +
-                    _vm._s(_vm.progress_info.first_name)
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "md-title" }, [_vm._v("Достижения:")]),
-              _vm._v(" "),
-              _c("div", { staticClass: "md-subhead right" }, [
-                _vm._v(
-                  _vm._s(_vm.progress_info.name) +
-                    " " +
-                    _vm._s(_vm.progress_info.result_time) +
-                    " " +
-                    _vm._s(_vm.progress_info.result_date)
-                )
-              ])
-            ],
-            1
-          ),
+          _c("md-card-header", [
+            _c("div", { staticClass: "md-title" }, [
+              _vm._v(_vm._s(_vm.progress_info.name))
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "md-subhead " }, [
+              _vm._v(
+                _vm._s(_vm.progress_info.name) +
+                  " " +
+                  _vm._s(_vm.progress_info.result_time) +
+                  " " +
+                  _vm._s(_vm.progress_info.result_date)
+              )
+            ])
+          ]),
           _vm._v(" "),
           _c(
             "md-card-expand",
