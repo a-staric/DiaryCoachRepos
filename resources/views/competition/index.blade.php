@@ -7,7 +7,6 @@
                 <md-toolbar class="md-primary md-dense" md-fixed-header>
 
                         <h4 class="md-title">Соревнования</h4>
-
                 </md-toolbar>
                 <div class="row p-2 m-1">
 
@@ -21,6 +20,7 @@
                             </div>
                             <!-- Button trigger modal -->
 
+                            @if(count($item->photos) > 0)
                             <div id="{{date_format(date_create($item->competitions->event_date),"FYd")}}" class="carousel slide">
                                 <ol class="carousel-indicators">
                                   <li data-target="#{{date_format(date_create($item->competitions->event_date),"FYd")}}" data-slide-to="0" class="active"></li>
@@ -36,7 +36,8 @@
                                     <img class="img-thumbnail card-img-top" data-toggle="modal"
                                     data-target="#{{date_format(date_create($item->competitions->event_date),"Fd")}}{{$index}}"
                                     style="object-fit: contain; height:350px; width: 100%"
-                                    src="{{$photo}}">
+                                    src="{{asset('images/'.$photo)}}"
+                                    >
 
                                   </div>
 
@@ -56,7 +57,8 @@
 
                                                 <img class="card-img-top"
                                                 style="object-fit: contain; height:350px; width: 100%"
-                                                src="{{$photo}}">
+                                                {{-- src="{{$photo}}"> --}}
+                                                src="{{asset('images/'.$photo)}}">
 
                                         </div>
                                         </div>
@@ -75,7 +77,7 @@
                                   <span class="sr-only">Next</span>
                                 </a>
                               </div>
-
+                              @endif
 
 
 
@@ -90,7 +92,7 @@
                             <a class="float-right" href="{{route('competition.show', $item->competitions->id)}}" class="card-link">Подробнее</a>
                         </li>
                       </ul>
-                      
+
 
                 </div>
 

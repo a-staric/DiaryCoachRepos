@@ -3,7 +3,7 @@
         <md-button class="md-icon-button bg-danger m-2">
             <md-icon>directions_run</md-icon>
           </md-button>
-                <h2 class="md-title" style="flex:1">{{ config('app.name', 'Laravel') }}</h3>
+                <h2 class="md-title" style="flex:1">{{ config('app.name', 'Laravel') }}</h2>
 
 
                 <md-button class="navbar-toggler md-icon-button" type="button" data-toggle="collapse"
@@ -51,12 +51,12 @@
                                 <md-menu-content>
                                   <md-menu-item>
                                     <md-button  href="{{ url('/student') }}">
-                                        Просмотр воспитанников
+                                        Список воспитанников
                                     </md-button>
                                   </md-menu-item>
                                   <md-menu-item>
                                     <md-button  href="{{ url('/student/create') }}">
-                                        Создание воспитанника
+                                        Добавить воспитанника
                                     </md-button>
                                   </md-menu-item>
                                   <md-menu-item>
@@ -69,18 +69,18 @@
 
                         </li>
                         <li class="nav-item">
-                            <md-menu class="h-100 d-flex">
+                            <md-menu class="h-100 d-flex" md-direction="bottom-start">
                                 <md-button class="navbar-link m-auto"  md-menu-trigger>Планы</md-button>
                                 <md-menu-content>
 
                                     <md-menu-item>
                                         <md-button href="{{ url('/distance') }}">
-                                            Просмотр дистанций
+                                            Список дистанций
                                         </md-button>
                                     </md-menu-item>
                                     <md-menu-item>
                                         <md-button href="{{ url('/distance/create') }}">
-                                            Создание дистанции
+                                            Добавить дистанцию
                                         </md-button>
                                     </md-menu-item>
 
@@ -99,9 +99,24 @@
                             </md-button>
                         </li>
                         <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/competition') }}">
-                                Соревнования
-                            </md-button>
+                            <md-menu class="h-100 d-flex" md-align-trigger>
+                                <md-button class="navbar-link m-auto"  md-menu-trigger>Соревнования</md-button>
+                                <md-menu-content>
+
+                                    <md-menu-item>
+                                        <md-button href="{{ url('/competition') }}">
+                                            Список соревнований
+                                        </md-button>
+                                    </md-menu-item>
+                                    <md-menu-item>
+                                        <md-button href="{{ url('/competition/create') }}">
+                                            Добавить соревнование
+                                        </md-button>
+                                    </md-menu-item>
+
+                                </md-menu-content>
+                            </md-menu>
+
                         </li>
                         <li class="nav-item">
                             <md-button class="d-flex" href="{{ route('logout') }}"

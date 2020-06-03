@@ -27,7 +27,6 @@
                     </thead>
                     <tbody>
                         @php $index = 1; @endphp
-                        {{dd($item->records)}}
                         @foreach($item->records as $record)
                         <tr onclick="window.open('/student/'+{{$record->id}})">
                         <th scope="row">{{$index++}}</th>

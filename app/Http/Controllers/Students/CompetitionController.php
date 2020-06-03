@@ -15,7 +15,7 @@ class CompetitionController extends Controller
 
     public function index()
     {
-        $competitions = Competition::all();
+        $competitions = Competition::orderByDesc('created_at')->paginate(6);
         foreach ($competitions as $competition) {
             $album_id = $competition->album_id;
 
@@ -50,8 +50,10 @@ class CompetitionController extends Controller
 
 
         if($comp->exists){
-            return redirect()->route('competition.index')
-                    ->with(['success'=>'Соревнование успешно добавлено!']);
+
+            return redirect()->route('photo.create')
+                    ->with(['album_id' => $album]);
+
         }else{
             return back();
         }
@@ -59,7 +61,24 @@ class CompetitionController extends Controller
 
     public function show($id)
     {
-        dd($id);
+        $competition = Competition::findOrFail($id);
+
+        $photos = DB::table('photos')
+        ->select('photos.path')
+        ->where('album_id','=', $competition->album_id)
+        ->orderByDesc('created_at')
+        ->get()->toArray();
+
+        $results = DB::table('competition_results')
+        ->join('students', 'competition_results.student_id', '=', 'students.id')
+        ->join('distances', 'competition_results.distance_id', '=', 'distances.id')
+        ->select('students.first_name', 'students.last_name', 'students.id as student_id','distances.name as distance_name',
+        'competition_results.result_time', 'competition_results.id as comp_result_id')
+        ->where('competition_id', $id)
+        // ->orderBy('name')
+        ->get()->toArray();
+
+        return view('competition.show', compact('competition','photos','results'));
     }
 
 

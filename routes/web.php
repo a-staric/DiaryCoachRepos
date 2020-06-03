@@ -14,6 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+Route::get('/phpinfo', function () {
+    return view('phpinfo');
+});
 
 Auth::routes();
 
@@ -41,11 +44,24 @@ Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
 
 });
 
-//Соревнования
+//Соревнования и результаты
 Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
+
+    Route::resource('competitionresult', 'CompetitionResultController')
+    ->names('competitionresult');
 
     Route::resource('competition', 'CompetitionController')
     ->names('competition');
+
+
+
+
+});
+//Фото
+Route::group(['namespace' => 'News', 'prefix' => ''], function(){
+
+    Route::resource('photo', 'PhotoController')
+    ->names('photo');
 
 });
 
