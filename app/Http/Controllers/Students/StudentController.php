@@ -20,22 +20,15 @@ class StudentController extends Controller
     {
         $this->middleware('auth');
     }
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+  
     public function index()
     {
-        $items = Student::paginate(5);
+        // withTrashed()
+        $items = Student::orderBy('last_name')
+        ->paginate(5);
         return view('students.index', compact('items'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         $item = new Student();
@@ -43,12 +36,6 @@ class StudentController extends Controller
                compact('item'));
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreStudent $request)
     {
         $data = $request->validated();
@@ -62,12 +49,7 @@ class StudentController extends Controller
         }
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+ 
     public function show($id)
     {
 
@@ -96,25 +78,13 @@ class StudentController extends Controller
         return view ('students.show', compact('student','records','competitions','plans'));
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
         $item = Student::findOrFail($id);
         return view('students.edit', compact('item'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function update(StoreStudent $request, $id)
     {
         $item = Student::findOrFail($id);
@@ -128,12 +98,7 @@ class StudentController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+    
     public function destroy($id)
     {
         $item = Student::find($id);

@@ -1,5 +1,5 @@
-<div class="form-row flex-column align-items-center">
-    @if ($errors->any())
+ <div class="form-row flex-column align-items-center">
+ {{--   @if ($errors->any())
     <div class="alert alert-danger">
         <ul>
             @foreach ($errors->all() as $error)
@@ -7,7 +7,7 @@
             @endforeach
         </ul>
     </div>
-@endif
+@endif --}}
 
     <div class="form-group col-md-6">
         <label for="name">Название соревнования</label>
@@ -77,6 +77,7 @@
         </div>
 
     <div class="form-group col-md-6">
-        <button type="submit" class="btn btn-primary">Добавить</button>
+        <button type="submit" class="btn btn-primary">@if($comp->exists) Изменить @else Добавить @endif</button>
+        <a href="{{route('competition.index')}}" class="float-right">Назад</a>
     </div>
 </div>

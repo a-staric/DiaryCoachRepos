@@ -14,18 +14,9 @@ class CompetitionController extends Controller
 {
 
     public function index()
-    {
-        $competitions = Competition::orderByDesc('created_at')->paginate(6);
-        foreach ($competitions as $competition) {
-            $album_id = $competition->album_id;
-
-            $photos = Photo::where('album_id',$album_id)
-            ->pluck('path')->take(3);
-            $items[] =(object) ['competitions' => $competition,
-            'photos' => $photos];
-        }
-
-            return view('competition.index', compact('items'));
+    {        
+        $competitions = Competition::orderByDesc('updated_at')->paginate(6);
+        return view('competition.index', compact('competitions'));
     }
 
 

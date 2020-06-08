@@ -16,12 +16,12 @@
                     <ul class="navbar-nav ml-auto">
                         @guest
                         <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/') }}">
+                            <md-button class="navbar-link" href="{{ url('/news') }}">
                                 Новости
                             </md-button>
                         </li>
                         <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/') }}">
+                            <md-button class="navbar-link" href="{{ url('/album') }}">
                                 Галерея
                             </md-button>
                         </li>
@@ -89,12 +89,12 @@
 
                         </li>
                         <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/') }}">
+                            <md-button class="navbar-link" href="{{ url('/news') }}">
                                 Новости
                             </md-button>
                         </li>
                         <li class="nav-item">
-                            <md-button class="navbar-link" href="{{ url('/') }}">
+                            <md-button class="navbar-link" href="{{ url('/albume') }}">
                                 Галерея
                             </md-button>
                         </li>

@@ -16,7 +16,7 @@ class Competition extends Model
         return $this->hasMany(CompetitionResult::class);
     }
 
-    public function albums()
+    public function album()
     {
         return $this->belongsTo(Album::class);
     }

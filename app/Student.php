@@ -3,10 +3,11 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Student extends Model
 {
-    // use SoftDeletes;
+    use SoftDeletes;
     protected $fillable = [
         'last_name',
         'first_name',

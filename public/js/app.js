@@ -38127,7 +38127,7 @@ var render = function() {
                   _vm._v(" "),
                   _c(
                     "md-card-expand-trigger",
-                    [_c("md-button", [_vm._v("Читать больше")])],
+                    [_c("md-button", [_vm._v("Подробнее")])],
                     1
                   )
                 ],

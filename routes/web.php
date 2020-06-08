@@ -21,39 +21,38 @@ Route::get('/phpinfo', function () {
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-//Воспитанники
+
 Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
 
     Route::resource('student', 'StudentController')->names('student');
 
 });
-//Достижения
-Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
 
-    Route::resource('progress', 'StudentDistanceController')
-    ->except(['create','update','edit'])
-    ->names('progress');
 
-});
-//Дистанции
-Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
-
-    Route::resource('distance', 'DistanceController')
-    ->except(['show'])
-    ->names('distance');
-
-});
-
-//Соревнования и результаты
 Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
 
     Route::resource('competitionresult', 'CompetitionResultController')
+    ->except(['index','show', 'edit', 'update'])
     ->names('competitionresult');
 
     Route::resource('competition', 'CompetitionController')
     ->names('competition');
 
+    Route::resource('trainingkind', 'TrainingKindController')
+    ->except(['show'])
+    ->names('trainingkind');
 
+    Route::resource('distance', 'DistanceController')
+    ->except(['show'])
+    ->names('distance');
+
+    Route::resource('progress', 'StudentDistanceController')
+    ->except(['create','update','edit'])
+    ->names('progress');
+
+    Route::resource('plan', 'PlanController')
+    ->except(['show'])
+    ->names('plan');
 
 
 });
@@ -61,7 +60,14 @@ Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
 Route::group(['namespace' => 'News', 'prefix' => ''], function(){
 
     Route::resource('photo', 'PhotoController')
+    ->except(['show', 'edit', 'update'])
     ->names('photo');
 
+    Route::resource('album', 'AlbumController')
+    ->except(['create', 'store', 'edit', 'update', 'destroy'])
+    ->names('album');
+
+    Route::resource('news', 'NewsController')
+    ->names('news');
 });
 

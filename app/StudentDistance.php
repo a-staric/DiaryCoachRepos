@@ -13,12 +13,12 @@ class StudentDistance extends Model
         'result_date'
     ];
 
-    public function students()
+    public function student()
     {
         return $this->belongsTo(Student::class);
     }
 
-    public function distances()
+    public function distance()
     {
         return $this->belongsTo(Distance::class);
     }

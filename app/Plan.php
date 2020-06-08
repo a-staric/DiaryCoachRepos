@@ -12,12 +12,12 @@ class Plan extends Model
         'plan_date',
     ];
 
-    public function students()
+    public function student()
     {
         return $this->belongsTo(Student::class);
     }
 
-    public function training_kinds()
+    public function training_kind()
     {
         return $this->belongsTo(TrainingKind::class);
     }

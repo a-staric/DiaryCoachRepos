@@ -22,7 +22,7 @@
                 <md-button @click="userProfile(student_info)">Открыть профиль</md-button>
             </div>
             <md-card-expand-trigger>
-                <md-button>Читать больше</md-button>
+                <md-button>Подробнее</md-button>
             </md-card-expand-trigger>
         </md-card-actions>
 

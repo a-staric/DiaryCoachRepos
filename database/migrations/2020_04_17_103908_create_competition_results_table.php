@@ -18,6 +18,7 @@ class CreateCompetitionResultsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('student_id');
             $table->unsignedBigInteger('distance_id');
+            $table->unsignedBigInteger('place');
             $table->time('result_time',0);
             $table->unsignedBigInteger('competition_id');
 

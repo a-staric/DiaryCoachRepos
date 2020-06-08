@@ -11,20 +11,21 @@ class CompetitionResult extends Model
         'distance_id',
         'result_time',
         'competition_id',
-        
+        'place',
+
     ];
 
-    public function students()
+    public function student()
     {
         return $this->belongsTo(Student::class);
     }
 
-    public function distances()
+    public function distance()
     {
         return $this->belongsTo(Distance::class);
     }
 
-    public function competitions()
+    public function competition()
     {
         return $this->belongsTo(Competition::class);
     }

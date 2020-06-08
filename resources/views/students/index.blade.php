@@ -24,6 +24,15 @@
                 <md-toolbar class="md-primary" md-fixed-header>
                     <div class="md-toolbar-row">
                         <h3 class="md-title">Воспитанники</h3>
+                        <div class="md-toolbar-section-end">
+                                <md-button class="md-icon-button text-decoration-none" href="{{route('student.create')}}">
+                                  <md-icon>add</md-icon>
+                                </md-button>
+
+                                <md-button class="md-icon-button text-decoration-none" href="{{route('home')}}">
+                                    <md-icon>home</md-icon>  
+                                </md-button>
+                        </div>
                     </div>
                 </md-toolbar>
 

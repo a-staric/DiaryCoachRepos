@@ -13,7 +13,7 @@ class News extends Model
         'album_id',
     ];
 
-    public function albums()
+    public function album()
     {
         return $this->belongsTo(Album::class);
     }

@@ -29,6 +29,7 @@ class StoreCompResult extends FormRequest
             'distance_id' => 'required',
             'competition_id' => 'required',
             'result_time' => 'required',
+            'place' => 'required|integer|between:1,300',
        ];
     }
 }

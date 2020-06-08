@@ -7,11 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class Photo extends Model
 {
     protected $fillable = [
-        'path',
+        'path.*',
         'album_id',
     ];
 
-    public function albums()
+    public function album()
     {
         return $this->belongsTo(Album::class);
     }

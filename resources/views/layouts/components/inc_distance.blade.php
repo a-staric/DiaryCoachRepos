@@ -13,7 +13,9 @@
         @enderror
     </div>
     <div class="form-group col-md-6">
-        <button type="submit" class="btn btn-primary">Добавить</button>
+        <button type="submit" class="btn btn-primary">@if($item->exists) Изменить @else Добавить @endif</button>
+        <a href="{{route('distance.index')}}" class="float-right">Назад</a>
+        
     </div>
 </div>
 

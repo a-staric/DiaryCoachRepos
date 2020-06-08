@@ -15,6 +15,13 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
+                        {{-- Сообщение об ошибке --}}
+
+                        @error('distance_id')
+                            <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+
+                        @if($distances)
                         <label for="distance_id">Дистанция</label>
                         <select type="text"
                             class="form-control @error('distance_id') is-invalid @enderror"
@@ -27,16 +34,18 @@
                                             </option>
                                     @endforeach
                         </select>
-                        {{-- Сообщение об ошибке --}}
-                        @error('distance_id')
-                            <div class="alert alert-danger">{{ $message }}</div>
-                        @enderror
+                        @else
+                        <a href="{{route('distance.create')}}" class="float-left">Нет дистанций! Добавим?</a>
+                        
+                        @endif
+                      
                     </div>
                     <div class="form-group col-md-6">
                         <label for="result_time">Время</label>
-                        <input type="text"
+                        <input type="time"
+                            step="1"
                             class="form-control @error('result_time') is-invalid @enderror"
-                            id="result_time" placeholder="Имя"
+                            id="result_time"
                             name="result_time"
                             value="{{old('result_time')}}"
                         >
@@ -45,7 +54,7 @@
                         @enderror
                     </div>
                     <div class="form-group col-md-6">
-                        <label for="result_date">Дата</label>
+                        <label for="result_date">Дата установления</label>
                         <input type="date"
                             class="form-control @error('result_date') is-invalid @enderror"
                             id="result_date" placeholder="Дата рождения"
@@ -59,7 +68,9 @@
 
                     <div class="form-group col-md-6">
                         <button type="submit" class="btn btn-primary">Добавить</button>
+                        <a href="{{route('student.show', $student->id)}}" class="float-right">Назад</a>
                     </div>
+
 
 </div>
 

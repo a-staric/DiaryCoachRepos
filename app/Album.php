@@ -20,7 +20,7 @@ class Album extends Model
         return $this->hasOne(News::class);
     }
 
-    public function competitions()
+    public function competition()
     {
         return $this->hasOne(Competition::class);
     }

@@ -4,11 +4,13 @@
 
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">Добро пожаловать</div>
+                <div class="card-header">Добро пожаловать, тренер!</div>
 
                 <div class="card-body">
 
-                   Вы зашли как тренер
+                   @livewire('search')
+                   
+
                 </div>
             </div>
         </div>

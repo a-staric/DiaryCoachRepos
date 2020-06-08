@@ -14,8 +14,25 @@ class StoreDistance extends FormRequest
 
     public function rules()
     {
+        $isDistanceId = isset($this->distance) ? $this->distance : null;
         return [
-            'name' => 'required|unique:distances',
+            'name' => 'required|max:150|unique:distances,name,'.$isDistanceId.',id',
+            ];
+        
+    }
+    public function attributes()
+    {
+        return [
+            'name' => 'название дистанции',
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'required' => 'Поле :attribute не может быть пустым!',
+            'unique' => 'Поле :attribute должно быть уникальным!',
+            'max' => 'Поле :attribute не может быть длиннее 150 символов!',
         ];
     }
 }

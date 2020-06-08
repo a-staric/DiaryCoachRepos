@@ -71,4 +71,5 @@
                         @enderror
                     </div>
 </div>
-                     <button type="submit" class="btn btn-primary">Добавить</button>
+                     <button type="submit" class="btn btn-primary">@if($item->exists) Изменить @else Добавить @endif</button>
+                     <a href="@if($item->exists) {{route('student.show', $item->id)}} @else {{route('student.index')}} @endif" class="float-right">Назад</a>

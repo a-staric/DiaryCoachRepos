@@ -28,7 +28,6 @@ class StudentDistanceController extends Controller
             ->get()->toArray();
 
 
-
         foreach($distances as $distance)
         {
             $name = $distance->name;
@@ -49,13 +48,6 @@ class StudentDistanceController extends Controller
     }
 
 
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(StoreProgress $request)
     {
 

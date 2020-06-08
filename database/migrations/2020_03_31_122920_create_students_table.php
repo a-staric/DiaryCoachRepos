@@ -22,6 +22,7 @@ class CreateStudentsTable extends Migration
             $table->double('weight',8,2)->unsigned()->nullable();
             $table->text('description')->nullable();
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -2,105 +2,87 @@
 
 @section('content')
         <div class="col-md-12">
+            {{-- Уведомление об успешном добавлении записи --}}
+            @include('layouts.components.session.default_success')
             <div class="card">
 
                 <md-toolbar class="md-primary md-dense" md-fixed-header>
+                    <div class="md-toolbar-row">
+                        <h3 class="md-title">Соревнования</h3>
+                        <div class="md-toolbar-section-end">
+                            @guest
+                            @else
+                                <md-button class="md-icon-button text-decoration-none" href="{{route('competition.create')}}">
+                                <md-icon>add</md-icon>
+                                </md-button>
+                            @endguest
+                                {{-- Домой --}}
+                                @include('layouts.components.routes.home')
 
-                        <h4 class="md-title">Соревнования</h4>
+                            {{-- <md-button class="" href="{{route('trainingkind.index')}}">
+                                    Виды тренировок
+                                </md-button> --}}
+                        </div>
+                    </div>
                 </md-toolbar>
                 <div class="row p-2 m-1">
+                    @foreach ($competitions as $comp )
+                        <div class="col-md-6 card mt-2">
+                            <md-card>
+                                <md-card-media-cover md-text-scrim>
 
-                @foreach ($items as $item )
-                    <div class="col-md-6 card mt-2">
-
-
-
-                            <div class="card-header">
-                            <h5 class="card-title">{{$item->competitions->name}}</h5>
-                            </div>
-                            <!-- Button trigger modal -->
-
-                            @if(count($item->photos) > 0)
-                            <div id="{{date_format(date_create($item->competitions->event_date),"FYd")}}" class="carousel slide">
-                                <ol class="carousel-indicators">
-                                  <li data-target="#{{date_format(date_create($item->competitions->event_date),"FYd")}}" data-slide-to="0" class="active"></li>
-                                  <li data-target="#{{date_format(date_create($item->competitions->event_date),"FYd")}}" data-slide-to="1"></li>
-                                  <li data-target="#{{date_format(date_create($item->competitions->event_date),"FYd")}}" data-slide-to="2"></li>
-                                </ol>
-
-                                <div class="carousel-inner">
-                                    @php $index = 0; @endphp
-                                  @foreach ($item->photos as $photo )
-
-                                  <div class="carousel-item {{$index == 0 ? 'active' : "" }}">
-                                    <img class="img-thumbnail card-img-top" data-toggle="modal"
-                                    data-target="#{{date_format(date_create($item->competitions->event_date),"Fd")}}{{$index}}"
-                                    style="object-fit: contain; height:350px; width: 100%"
-                                    src="{{asset('images/'.$photo)}}"
+                                  <md-card-media md-ratio="16:9">
+                                    @if(count($comp->album->photos) == 0)
+                                    <img class="img-thumbnail"
+                                    src="{{asset('images/include/default.jpg')}}"
+                                    style="object-fit: contain;"
+                                    {{--  width: 100% --}}
+                                    alt=""
                                     >
+                                    @else
+                                    <img class="img-thumbnail"
+                                    src="{{asset('images/'.$comp->album->photos->first()->path)}}"
+                                    style="object-fit: contain; "
+                                    {{-- height:350px; width: 100% --}}
+                                    alt=""
+                                    >
+                                    @endif
 
-                                  </div>
+                                  </md-card-media>
 
+                                  <md-card-area>
+                                    <md-card-header>
+                                      <span class="md-title">{{Str::limit($comp->name, 45)}}</span>
+                                      <span class="md-subhead">{{Date::parse($comp->event_date)->format('j F Y г.')}}</span>
+                                    </md-card-header>
 
+                                    <md-card-actions>
 
-                                   <!-- Modal -->
-                                <div class="modal fade" id="{{date_format(date_create($item->competitions->event_date),"Fd")}}{{$index}}" tabindex="-1" role="dialog" aria-labelledby="{{date_format(date_create($item->competitions->event_date),"FYFd")}}" aria-hidden="true">
-                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                        <h5 class="modal-title">{{$item->competitions->name}}</h5>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                            <span aria-hidden="true">&times;</span>
-                                        </button>
+                                        <div class="float-left">
+                                            <md-button class="text-decoration-none d-inline-block" href="{{route('competition.edit', $comp->id)}}">
+                                                Редактировать
+                                             </md-button>
+                                            <form action="{{route('competition.destroy', $comp->id)}}" method="post" class="d-inline-block">
+                                            @csrf
+                                            @method('DELETE')
+                                            <md-button class="text-decoration-none" type="submit">
+                                               Удалить
+                                            </md-button>
+                                            </form>
+                                            <md-button class="text-decoration-none" href="{{route('competition.show', $comp->id)}}">
+                                                К прочтению
+                                            </md-button>
                                         </div>
-                                        <div class="modal-body">
 
-                                                <img class="card-img-top"
-                                                style="object-fit: contain; height:350px; width: 100%"
-                                                {{-- src="{{$photo}}"> --}}
-                                                src="{{asset('images/'.$photo)}}">
-
-                                        </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                 @php $index++; @endphp
-                                  @endforeach
-
-                                </div>
-                                 <a class="carousel-control-prev" href="#{{date_format(date_create($item->competitions->event_date),"FYd")}}" role="button" data-slide="prev">
-                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                                  <span class="sr-only">Previous</span>
-                                </a>
-                                <a class="carousel-control-next" href="#{{date_format(date_create($item->competitions->event_date),"FYd")}}" role="button" data-slide="next">
-                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                                  <span class="sr-only">Next</span>
-                                </a>
-                              </div>
-                              @endif
-
-
-
-                    <div class="card-body">
-
-                    <p class="card-text">{{$item->competitions->description}}</p>
-                      </div>
-                      <ul class="list-group list-group-flush">
-                        <li class="list-group-item">{{date_format(date_create($item->competitions->event_date),"d F Y")}}</li>
-                        <li class="list-group-item">{{$item->competitions->place}}</li>
-                        <li class="list-group-item">
-                            <a class="float-right" href="{{route('competition.show', $item->competitions->id)}}" class="card-link">Подробнее</a>
-                        </li>
-                      </ul>
-
-
+                                    </md-card-actions>
+                                  </md-card-area>
+                                </md-card-media-cover>
+                              </md-card>
+                        </div>
+                    @endforeach
                 </div>
-
-                @endforeach
             </div>
-            </div>
-            {{-- {{ $items->links() }} --}}
-
+            {{ $competitions->links() }}
 
         </div>
 @endsection

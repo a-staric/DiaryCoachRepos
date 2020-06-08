@@ -3,12 +3,14 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class TrainingKind extends Model
 {
+    use SoftDeletes;
     protected $fillable = [
         'name',
-        'discription',
+        'description',
     ];
 
     public function plans()

@@ -61,7 +61,20 @@
         @enderror
     </div>
     <div class="form-group col-md-6">
+        <label for="place">Место</label>
+        <input type="number"
+            class="form-control @error('place') is-invalid @enderror"
+            id="place" placeholder="Место"
+            name="place"
+            value="@if($item->exists){{$item->place}}@else{{old('place')}}@endif"
+        >
+        @error('place')
+            <div class="alert alert-danger">{{ $message }}</div>
+        @enderror
+    </div>
+    <div class="form-group col-md-6">
         <button type="submit" class="btn btn-primary">Добавить</button>
+        <a href="{{route('competition.index')}}" class="float-right">Назад</a>
     </div>
 </div>
 
