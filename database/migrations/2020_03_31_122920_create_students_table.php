@@ -21,6 +21,7 @@ class CreateStudentsTable extends Migration
             $table->double('height',8,2)->unsigned()->nullable();
             $table->double('weight',8,2)->unsigned()->nullable();
             $table->text('description')->nullable();
+            $table->string('image_path')->nullable()->unique();
             $table->timestamps();
             $table->softDeletes();
         });

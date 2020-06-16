@@ -13,8 +13,12 @@ use Illuminate\Support\Facades\DB;
 class CompetitionController extends Controller
 {
 
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show');
+    }
     public function index()
-    {        
+    {
         $competitions = Competition::orderByDesc('updated_at')->paginate(6);
         return view('competition.index', compact('competitions'));
     }
@@ -64,7 +68,7 @@ class CompetitionController extends Controller
         ->join('students', 'competition_results.student_id', '=', 'students.id')
         ->join('distances', 'competition_results.distance_id', '=', 'distances.id')
         ->select('students.first_name', 'students.last_name', 'students.id as student_id','distances.name as distance_name',
-        'competition_results.result_time', 'competition_results.id as comp_result_id')
+        'competition_results.result_time', 'competition_results.id as comp_result_id', 'competition_results.place as student_place')
         ->where('competition_id', $id)
         // ->orderBy('name')
         ->get()->toArray();
@@ -75,18 +79,40 @@ class CompetitionController extends Controller
 
     public function edit($id)
     {
-        //
+        $comp = Competition::findOrFail($id);
+        return view('competition.edit', compact('comp'));
     }
 
 
-    public function update(Request $request, $id)
+    public function update(StoreCompetition $request, $id)
     {
-        //
+        $comp = Competition::findOrFail($id);
+        $data = $request->validated();
+        DB::table('albums')->where('id', '=' , $comp->album_id)->update(['name' => $data['name']]);
+        $result = $comp->update($data);
+
+
+       if($result){
+           return redirect()->route('competition.index')
+               ->with(['success'=>'Соревнование успешно обновлено!']);
+       } else{
+           return back();
+       }
     }
 
 
     public function destroy($id)
     {
-        //
+       $comp = Competition::findOrFail($id);
+       $deleted_name = 'deleted'.$comp->name;
+       DB::table('albums')->where('id', '=' , $comp->album_id)->update(['name' => $deleted_name]);
+       $result = $comp->delete();
+
+       if($result){
+           return redirect()->route('competition.index')
+               ->with(['success'=>'Соревнование успешно удалено!']);
+       } else{
+           return back();
+       }
     }
 }

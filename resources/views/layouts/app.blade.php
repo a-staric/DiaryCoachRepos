@@ -44,9 +44,9 @@
         </main>
 
         {{-- @include('layouts.components.footer') --}}
-        
+
     </div>
-    
+
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
     {{-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script> --}}
@@ -78,6 +78,7 @@
         let input = document.createElement('input');
         input.setAttribute('type','file');
         input.setAttribute('name','path[]');
+        input.setAttribute('accept', '.jpg, .jpeg, .png');
         input.setAttribute('class','custom-file-input');
         input.setAttribute('id','customFile'+id);
         input.setAttribute('onchange','changeFileName(customFile'+id+',customLabel'+id+')');
@@ -109,8 +110,29 @@
 
 
     };
+    function handleFileSelect() {
+        var evt = document.getElementById('image_path');
+        var file = evt.files; // FileList object
+        var f = file[0];
+
+
+        // Only process image files.
+        if (!f.type.match('image.*')) {
+            alert("Image only please....");
+        }
+        var reader = new FileReader();
+        // Closure to capture the file information.
+        reader.onload = (function(theFile) {
+            return function(e) {
+                // Render thumbnail.
+                var img = document.getElementById('avatar_img');
+                img.src = e.target.result;
+            };
+        })(f);
+        reader.readAsDataURL(f);
+    }
     console.log('get start');
-    </script> 
+    </script>
         @livewireScripts
 
 </body>

@@ -1,4 +1,4 @@
-<div>
+<div class="pt-1">
     <input class="form-control" wire:model="search" type="text" placeholder="Введите имя или фамилию спортсмена"/>
     <br>
     <ul class="list-group list-group-flush">

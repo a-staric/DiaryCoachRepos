@@ -1,6 +1,8 @@
 <?php
 
+use Carbon\Carbon;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class DatabaseSeeder extends Seeder
 {
@@ -33,6 +35,14 @@ class DatabaseSeeder extends Seeder
         //     $student->plans()->saveMany(factory(App\Plan::class, 5)->make());
 
         // });
+
+
+
+        $this->call([
+            StudentsTableSeeder::class,
+            DistancesTableSeeder::class,
+            RecordsTableSeeder::class,
+            ]);
 
     }
 }

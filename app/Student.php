@@ -15,7 +15,8 @@ class Student extends Model
         'height',
         'weight',
         'description',
-        'distance_id'
+        'distance_id',
+        'image_path',
     ];
 
     public function student_distances()

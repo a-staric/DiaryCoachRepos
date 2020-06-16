@@ -43,5 +43,7 @@
 
     <div class="form-group col-md-6">
         <button type="submit" class="btn btn-primary">@if($news->exists) Изменить @else Добавить @endif</button>
+        <a href="@if($news->exists) {{route('news.show', $news->id)}} @else {{route('news.index')}} @endif" class="float-right">Назад</a>
+
     </div>
 </div>

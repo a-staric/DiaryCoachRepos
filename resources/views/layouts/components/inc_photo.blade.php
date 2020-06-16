@@ -4,7 +4,7 @@
 
         <div class="input-group">
             <div class="custom-file">
-                <input type="file" class="custom-file-input" id="customFile1" name="path[]" onchange="changeFileName('customFile1','customLabel1')">
+                <input type="file" class="custom-file-input" id="customFile1" name="path[]" onchange="changeFileName('customFile1','customLabel1')" accept=".jpg, .jpeg, .png">
                 <label class="custom-file-label text-nowrap overflow-hidden" for="customFile" id="customLabel1">Выбрать фото...</label>
             </div>
             <div class="input-group-append">
@@ -45,6 +45,8 @@
 
     <div class="form-group col-md-6">
         <button type="submit" class="btn btn-primary">Добавить</button>
+        <a href="{{route('home')}}" class="float-right">Назад</a>
+
     </div>
 
     <div class="form-group col-md-6">

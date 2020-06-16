@@ -16,10 +16,10 @@ class StoreCompetition extends FormRequest
     {
         $start_date = Carbon::today()->subYears(120)->toDateString();
         $finish_date = Carbon::today()->addDay(365)->toDateString();
-        // $isCompId = isset($this->trainingkind) ? $this->trainingkind : null;
-        // dd($this->competition);
+        // $isCompetitionid = isset($this->compettition) ? $this->compettition : null;
+        //  dd($this->competition);
         return [
-             'name' => 'required|max:150|unique:competitions',
+             'name' => 'required|max:150|unique:competitions,name,'.$this->competition,
              'place' => 'required|max:200',
              'description' => 'required',
              'event_link' => 'nullable|url',

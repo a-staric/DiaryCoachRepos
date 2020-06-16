@@ -3,8 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-	
-use Carbon\Carbon; 
+
+use Carbon\Carbon;
 
 class StoreStudent extends FormRequest
 {
@@ -27,7 +27,7 @@ class StoreStudent extends FormRequest
     {
         $start_date = Carbon::today()->subYears(120)->toDateString();
         $finish_date = Carbon::today()->subYears(5)->toDateString();
-        
+
         return [
             'last_name' => 'required|max:100|alpha',
             'first_name' => 'required|max:100|alpha',
@@ -35,6 +35,7 @@ class StoreStudent extends FormRequest
             'height' => 'required|integer|between:50,300',
             'weight'=> 'required|integer|between:15,300',
             'description' => 'required',
+            'image_path' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:102048'
         ];
     }
 
@@ -61,7 +62,7 @@ class StoreStudent extends FormRequest
             'alpha' => 'Поле :attribute должно быть полностью заполнено символами!',
             'after' => 'Дата рождения должна быть после :date!',
             'before' => 'Дата рождения должна быть до :date!',
-            
+
         ];
     }
 }

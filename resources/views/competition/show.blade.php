@@ -8,27 +8,78 @@
         <md-toolbar class="md-primary" md-fixed-header>
             <div class="md-toolbar-row">
                 <h3 class="md-title" style="flex:1">{{$competition->name}}</h3>
-                <md-button class="md-primary text-decoration-none" href="{{route('student.edit', $competition->id)}}">Редактировать</md-button>
+                <md-button class="md-primary text-decoration-none" href="{{route('competition.edit', $competition->id)}}">Редактировать</md-button>
                 <form action="{{route('competitionresult.create')}}" method="post">
                     @csrf
                     @method('GET')
                     <input type="text" name="comp_id" value="{{$competition->id}}" hidden>
-                    <md-button class="md-primary" type="submit">Результат</md-button>
+                    <md-button class="md-primary" type="submit">Результаты</md-button>
                   </form>
-                <form action="{{route('student.destroy', $competition->id)}}" method="post">
+                <form action="{{route('competition.destroy', $competition->id)}}" method="post">
                   @csrf
                   @method('DELETE')
                   <md-button class="md-primary" type="submit">Удалить</md-button>
                 </form>
+                <md-button class="text-decoration-none" href="{{route('competition.index')}}">
+                    К другим соревнованиям
+                </md-button>
                 </div>
         </md-toolbar>
+        <div class="p-4 col-md-12">
+            <div class="row">
+              <div class="col-md-12 p-4">
+                <div class="md-title">
+                    {{$competition->description}}
+                </div>
+                <div class="md-subhead">
+                    {{$competition->place}}
+                </div>
+                <div class="md-subhead">
+                    {{$competition->event_date}}
+                </div>
+              </div>
+              @foreach($competition->album->photos as $photo)
+              <div class="col-md-3 pb-4">
+                  <img class="img-thumbnail"
+                                  src="{{asset('images/'.$photo->path)}}" data-toggle="modal"
+                                  style="object-fit: contain; height:250px; width: 100%;"
+                                  data-target="#{{date_format(date_create(now()),"Fd")}}{{$photo->id}}"
+                                  {{-- height:350px; width: 100% --}}
+                                  alt="{{$photo->path}}"
+                                  >
+              </div>
+              <!-- Modal -->
+              <div class="modal fade" id="{{date_format(date_create(now()),"Fd")}}{{$photo->id}}" tabindex="-1" role="dialog" aria-labelledby="{{date_format(date_create(now()),"Fd")}}{{$photo->id}}" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                    {{-- <h5 class="modal-title">{{$item->competitions->name}}</h5> --}}
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    </div>
+                    <div class="modal-body">
+
+                            <img class="card-img-top"
+                            style="object-fit: contain; height:450px; width: 100%"
+                            {{-- src="{{$photo}}"> --}}
+                            src="{{asset('images/'.$photo->path)}}">
+
+                    </div>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+
+            </div>
+
         <md-card-header>
 
-            <div class="md-title">{{$competition->place}}</div>
-        <div class="md-title">Источник -> <a href="http://{{$competition->event_link}}" target="_blank">+</a></div>
-        </md-card-header>
-        <md-card-content>
-            {{$competition->description}}
+        @if(isset($competition->event_link))
+        <div class="md-title"><a href="{{$competition->event_link}}" target="_blank">Источник</a></div>
+        @endif
+
+
 
 
             <md-list class="md-dense m-0 p-0">
@@ -39,7 +90,7 @@
                 @foreach ($results as $result)
                 <md-list-item class="">
                     <md-button href="{{ url('/student', $result->student_id ) }}">
-                    {{$result->first_name}} {{$result->last_name}}
+                    {{$result->student_place}} место, {{$result->first_name}} {{$result->last_name}}
                     Дистанция: {{$result->distance_name}}
                     Результат: {{$result->result_time}}
                     </md-button>
@@ -56,12 +107,7 @@
                 @endif
             </md-list>
         </md-card-content>
-        @foreach ($photos as $photo)
-        <img class="card-img-top"
-        style="object-fit: contain; height:350px; width: 100%"
-                     {{-- src="{{$photo->path}}"> --}}
-          src="{{asset('images/'.$photo->path)}}">
-          @endforeach
+
     </div>
 </div>
 

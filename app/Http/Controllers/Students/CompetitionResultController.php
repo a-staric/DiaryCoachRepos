@@ -10,6 +10,11 @@ use Illuminate\Support\Facades\DB;
 
 class CompetitionResultController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function create()
     {
         $item = new CompetitionResult();
@@ -31,7 +36,7 @@ class CompetitionResultController extends Controller
         return view('competitionresults.create', compact('item','students', 'distances', 'competitions'));
     }
 
-  
+
     public function store(StoreCompResult $request)
     {
         $data = $request->validated();

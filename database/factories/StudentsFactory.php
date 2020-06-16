@@ -4,14 +4,18 @@
 
 use App\Student;
 use Faker\Generator as Faker;
+use Illuminate\Support\Facades\DB;
 
 $factory->define(Student::class, function (Faker $faker) {
+
     return [
+
         'last_name' => $faker->lastName,
         'first_name'=> $faker->firstName,
         'dob' => $faker->date(),
         'height' => rand(140, 200),
         'weight' => rand(40, 90),
-        'description'=>$faker->realText(300)
+        'description'=>$faker->realText(300),
     ];
+
 });

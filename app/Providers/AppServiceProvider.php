@@ -26,5 +26,6 @@ class AppServiceProvider extends ServiceProvider
     {
         Schema::defaultStringLength(191);
         Date::setLocale('ru');
+        date_default_timezone_set('Europe/Minsk');
     }
 }

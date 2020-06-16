@@ -9,6 +9,10 @@ use Illuminate\Support\Facades\DB;
 
 class PhotoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
 
     public function show($id)
     {
@@ -52,9 +56,17 @@ class PhotoController extends Controller
             ->with('images',$imgNames);
     }
 
-   
+
     public function destroy($id)
     {
-        //
+        $item = Photo::findOrFail($id);
+        $result = $item->delete();
+
+        if($result){
+            return redirect()->route('album.index')
+                ->with(['success'=>'Дистанция успешно удалена!']);
+        } else{
+            return back();
+        }
     }
 }

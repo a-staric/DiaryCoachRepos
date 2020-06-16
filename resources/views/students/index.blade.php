@@ -2,10 +2,10 @@
 
 @section('content')
         <div class="col-md-12">
-       
+
 
         @if(session('success'))
-              
+
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
                              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
@@ -17,25 +17,29 @@
                             </a>
                             </strong>
                         </div>
-                  
+
          @endif
             <div class="card">
 
                 <md-toolbar class="md-primary" md-fixed-header>
                     <div class="md-toolbar-row">
                         <h3 class="md-title">Воспитанники</h3>
-                        <div class="md-toolbar-section-end">
-                                <md-button class="md-icon-button text-decoration-none" href="{{route('student.create')}}">
-                                  <md-icon>add</md-icon>
-                                </md-button>
 
-                                <md-button class="md-icon-button text-decoration-none" href="{{route('home')}}">
-                                    <md-icon>home</md-icon>  
-                                </md-button>
+                        <div class="md-toolbar-section-end">
+                                @auth
+                                 <md-button class="md-icon-button text-decoration-none" href="{{route('student.create')}}">
+                                    <md-icon>add</md-icon>
+                                 </md-button>
+                                @endauth
+
+
+
+                                @include('layouts.components.routes.home')
+
                         </div>
                     </div>
                 </md-toolbar>
-
+                 @livewire('search')
                 @foreach ($items as $item )
 
                         <avatar-student :student_info='@json($item)'></avatar-student>

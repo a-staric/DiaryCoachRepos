@@ -11,16 +11,20 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
 Route::get('/phpinfo', function () {
     return view('phpinfo');
 });
 
 Auth::routes();
 
+
+
+// Route::group(['middleware' => ['auth']], function () {
+//     Route::resource('student', 'StudentController')->names('student');
+// });
+
 Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/', 'HomeController@welcome')->name('welcome');
 
 Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
 

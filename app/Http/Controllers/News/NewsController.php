@@ -11,6 +11,10 @@ use Illuminate\Support\Facades\DB;
 
 class NewsController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth')->except('index', 'show');
+    }
 
     public function index()
     {

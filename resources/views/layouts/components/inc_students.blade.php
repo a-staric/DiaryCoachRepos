@@ -1,10 +1,10 @@
 <div class="form-row">
                     <div class="form-group col-md-6">
                         <label for="last_name">Фамилия</label>
-                        <input type="text" 
-                            class="form-control @error('last_name') is-invalid @enderror" 
+                        <input type="text"
+                            class="form-control @error('last_name') is-invalid @enderror"
                             id="last_name" placeholder="Фамилия"
-                            name="last_name" 
+                            name="last_name"
                             value="@if($item->exists){{$item->last_name}}@else{{old('last_name')}}@endif"
                         >
                         {{-- Сообщение об ошибке --}}
@@ -29,7 +29,7 @@
                         <input type="date"
                             class="form-control @error('dob') is-invalid @enderror"
                             id="dob" placeholder="Дата рождения"
-                            name="dob" 
+                            name="dob"
                             value="@if($item->exists){{$item->dob}}@else{{old('dob')}}@endif"
                         >
                         @error('dob')
@@ -53,7 +53,7 @@
                         <input type="number"
                             class="form-control @error('weight') is-invalid @enderror"
                             id="weight" placeholder="Вес"
-                            name="weight" 
+                            name="weight"
                             value="@if($item->exists){{$item->weight}}@else{{old('weight')}}@endif"
                         >
                         @error('weight')
@@ -69,6 +69,33 @@
                         @error('description')
                             <div class="alert alert-danger">{{ $message }}</div>
                         @enderror
+                    </div>
+                    <div class="form-group col-md-12">
+                        <label for="image_path">Фото</label>
+                        <input type="file" class="form-control @error('image_path') is-invalid @enderror"
+                        id="image_path" name="image_path" accept=".jpg, .jpeg, .png"
+                        onchange="handleFileSelect()"
+                        >
+                        @error('image_path')
+                        <div class="alert alert-danger">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="col-md-12">
+                                    @if($item->image_path)
+                                    <img class="img-thumbnail card-img-top"
+                                    src="{{asset('avatar/'.$item->image_path)}}"
+                                    style="object-fit: contain; height: 200px; width: 100%"
+                                    alt="Avatar"
+                                    id="avatar_img"
+                                    >
+                                    @else
+                                    <img class="img-thumbnail card-img-top"
+                                    src="{{asset('images/include/default.jpg')}}"
+                                    style="object-fit: contain; height: 200px; width: 100%"
+                                    alt="Avatar"
+                                    id="avatar_img"
+                                    >
+                                    @endif
                     </div>
 </div>
                      <button type="submit" class="btn btn-primary">@if($item->exists) Изменить @else Добавить @endif</button>

@@ -16,8 +16,8 @@ class Search extends Component
         $students = Student::where('last_name', 'like' , $search)
             ->orWhere('first_name', 'like', $search)
             ->get();
-            
+
         return view('livewire.search', compact('students'));
     }
-    
+
 }

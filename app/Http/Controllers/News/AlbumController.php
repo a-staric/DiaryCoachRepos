@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 
 class AlbumController extends Controller
 {
+    
     // Вывод всех альбомов
     public function index()
     {
@@ -16,7 +17,7 @@ class AlbumController extends Controller
         // dd($album->news->id);
         return view('album.index', compact('albums'));
     }
-    
+
     // Вывод одного альбома
     public function show($id)
     {
