@@ -9,6 +9,11 @@
             <h3 class="md-title">{{$news->title}}</h3>
                 <div class="md-toolbar-section-end">
                     <div class="float-left">
+                        @guest
+                        <md-button class="text-decoration-none" href="{{route('news.index')}}">
+                            К другим новостям
+                        </md-button>
+                        @else
                         <md-button class="text-decoration-none d-inline-block" href="{{route('news.edit', $news->id)}}">
                             Редактировать
                          </md-button>
@@ -22,6 +27,8 @@
                         <md-button class="text-decoration-none" href="{{route('news.index')}}">
                             К другим новостям
                         </md-button>
+                        @endguest
+
                     </div>
                 </div>
             </div>

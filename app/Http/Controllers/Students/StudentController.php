@@ -22,6 +22,19 @@ class StudentController extends Controller
         $this->middleware('auth')->except('index','show');
     }
 
+    public function archive(){
+        $items = Student::onlyTrashed()
+        ->orderBy('last_name')
+        ->paginate(10);
+        return view('students.archive', compact('items'));
+    }
+
+    public function recover($id){
+        $item = Student::withTrashed()
+        ->findOrFail($id)->restore();
+        return redirect()->route('student.index');
+    }
+
     public function index()
     {
         // withTrashed()
@@ -65,8 +78,7 @@ class StudentController extends Controller
         ->join('distances', 'student_distances.distance_id', '=', 'distances.id')
         ->select('student_distances.id', 'distances.name', 'student_distances.result_time', 'student_distances.result_date')
         ->where('student_id', $id)
-        ->orderByDesc('result_date')
-        ->get()->toArray();
+        ->orderByDesc('result_date')->paginate(5);
 
         $competitions = DB::table('competitions')
         ->join('competition_results', 'competitions.id', '=', 'competition_results.competition_id')
@@ -74,13 +86,13 @@ class StudentController extends Controller
         ->select('competitions.name as comp_name', 'competitions.event_date', 'competitions.place',
                 'distances.name as dist_name','competition_results.result_time',  'competition_results.place as res')
         ->where('student_id', $id)
-        ->get()->toArray();
+        ->orderByDesc('competitions.event_date')->paginate(5);
 
         $plans = DB::table('plans')
         ->join('training_kinds', 'plans.training_kind_id', '=', 'training_kinds.id')
         ->select('training_kinds.name', 'training_kinds.description', 'plans.plan_date')
         ->where('student_id', $id)
-        ->orderByDesc('plan_date')->paginate(7);
+        ->orderBy('plan_date')->paginate(7);
 
         return view ('students.show', compact('student','records','competitions','plans'));
     }
@@ -115,7 +127,13 @@ class StudentController extends Controller
 
     public function destroy($id)
     {
-        $item = Student::find($id);
+        $item = Student::withTrashed()
+        ->findOrFail($id);
+        if($item->trashed()){
+            $item->forceDelete();
+            return redirect()->route('student.index');
+        }
+        else{
         if(empty($item)){
             return back()->withErrors(['msg_delete'=>"Запись с  id = [{$id}] не найдена!"])->withInput();
         }
@@ -127,5 +145,6 @@ class StudentController extends Controller
         } else{
             return back();
         }
+    }
     }
 }

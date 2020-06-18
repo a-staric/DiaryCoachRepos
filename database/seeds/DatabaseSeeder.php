@@ -42,6 +42,13 @@ class DatabaseSeeder extends Seeder
             StudentsTableSeeder::class,
             DistancesTableSeeder::class,
             RecordsTableSeeder::class,
+            TrainingKindsTableSeeder::class,
+            PlansTableSeeder::class,
+            AlbumsTableSeeder::class,
+            CompetitionsTableSeeder::class,
+            CompetitionResultsTableSeeder::class,
+            NewsTableSeeder::class,
+            PhotosTableSeeder::class,
             ]);
 
     }

@@ -19,7 +19,7 @@ class CompetitionController extends Controller
     }
     public function index()
     {
-        $competitions = Competition::orderByDesc('updated_at')->paginate(6);
+        $competitions = Competition::orderByDesc('event_date')->paginate(6);
         return view('competition.index', compact('competitions'));
     }
 

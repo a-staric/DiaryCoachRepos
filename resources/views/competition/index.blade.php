@@ -59,6 +59,14 @@
                                     <md-card-actions>
 
                                         <div class="float-left">
+                                            @guest
+                                            <md-button class="text-decoration-none" href="{{route('competition.show', $comp->id)}}">
+                                                К прочтению
+                                            </md-button>
+                                            @else
+                                            <md-button class="text-decoration-none" href="{{route('competition.show', $comp->id)}}">
+                                                К прочтению
+                                            </md-button>
                                             <md-button class="text-decoration-none d-inline-block" href="{{route('competition.edit', $comp->id)}}">
                                                 Редактировать
                                              </md-button>
@@ -69,9 +77,7 @@
                                                Удалить
                                             </md-button>
                                             </form>
-                                            <md-button class="text-decoration-none" href="{{route('competition.show', $comp->id)}}">
-                                                К прочтению
-                                            </md-button>
+                                            @endguest
                                         </div>
 
                                     </md-card-actions>

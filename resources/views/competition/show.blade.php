@@ -8,6 +8,12 @@
         <md-toolbar class="md-primary" md-fixed-header>
             <div class="md-toolbar-row">
                 <h3 class="md-title" style="flex:1">{{$competition->name}}</h3>
+                @guest
+                <md-button class="text-decoration-none" href="{{route('competition.index')}}">
+                    К другим соревнованиям
+                </md-button>
+                @else
+
                 <md-button class="md-primary text-decoration-none" href="{{route('competition.edit', $competition->id)}}">Редактировать</md-button>
                 <form action="{{route('competitionresult.create')}}" method="post">
                     @csrf
@@ -23,6 +29,7 @@
                 <md-button class="text-decoration-none" href="{{route('competition.index')}}">
                     К другим соревнованиям
                 </md-button>
+                @endguest
                 </div>
         </md-toolbar>
         <div class="p-4 col-md-12">
@@ -35,7 +42,7 @@
                     {{$competition->place}}
                 </div>
                 <div class="md-subhead">
-                    {{$competition->event_date}}
+                    {{Date::parse($competition->event_date)->format('j F Y г.')}}
                 </div>
               </div>
               @foreach($competition->album->photos as $photo)
@@ -94,7 +101,8 @@
                     Дистанция: {{$result->distance_name}}
                     Результат: {{$result->result_time}}
                     </md-button>
-
+                    @guest
+                    @else
                     <form action="{{route('competitionresult.destroy', $result->comp_result_id)}}" method="post">
                         @csrf
                         @method('DELETE')
@@ -102,6 +110,7 @@
                             <md-icon>clear</md-icon>
                         </md-button>
                     </form>
+                    @endguest
                 </md-list-item>
                 @endforeach
                 @endif

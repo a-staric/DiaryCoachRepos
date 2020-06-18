@@ -8,11 +8,11 @@ use Illuminate\Http\Request;
 
 class AlbumController extends Controller
 {
-    
+
     // Вывод всех альбомов
     public function index()
     {
-        $albums = Album::orderBy('created_at')
+        $albums = Album::orderByDesc('created_at')
         ->paginate(6);
         // dd($album->news->id);
         return view('album.index', compact('albums'));

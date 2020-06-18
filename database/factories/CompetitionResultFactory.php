@@ -14,5 +14,6 @@ $factory->define(CompetitionResult::class, function (Faker $faker) {
             'distance_id' => array_rand($distaceIds) + 1,
             'result_time' => $faker->time(),
             'competition_id' => array_rand($competitionIds) + 1,
+            'place' => 1,
         ];
 });

@@ -127,6 +127,7 @@
                             Нет рекордов
                         @endif
                 </ul>
+                {{ $records->links() }}
                 </md-card-content>
               </md-card-expand-content>
 
@@ -157,6 +158,7 @@
                             Нет соревнований
                         @endif
                     </ul>
+                    {{ $competitions->links() }}
                 </md-card-content>
               </md-card-expand-content>
 

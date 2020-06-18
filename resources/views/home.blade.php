@@ -84,7 +84,12 @@
                                                 Добавить фото
                                             </a>
                                         </li>
-                                        
+                                        <li class="nav-item">
+                                            <a class="nav-link" href="{{ url('/student/archive') }}">
+                                                Архив
+                                            </a>
+                                        </li>
+
                                     </ul>
                                 </div>
                             </div>

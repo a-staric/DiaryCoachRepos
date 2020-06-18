@@ -5,7 +5,10 @@
         @if($search == '')
         @elseif(count($students) == 0)
             <li class="list-group-item">По вашему запросу "{{$search}}" ничего не найдено. Извините!</li>
+            @guest
+            @else
             <a href="{{route('student.create')}}" class="list-group-item list-group-item-action">Создать</a>
+            @endguest
         @else
             @foreach($students as $student)
                 <a href="{{route('student.show', $student->id)}}" class="list-group-item list-group-item-action">

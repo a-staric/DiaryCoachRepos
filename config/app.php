@@ -139,6 +139,8 @@ return [
         /*
          * Laravel Framework Service Providers...
          */
+
+
         Illuminate\Auth\AuthServiceProvider::class,
         Illuminate\Broadcasting\BroadcastServiceProvider::class,
         Illuminate\Bus\BusServiceProvider::class,
@@ -165,7 +167,7 @@ return [
         /*
          * Package Service Providers...
          */
-
+        Livewire\LivewireServiceProvider::class,
         /*
          * Application Service Providers...
          */
@@ -175,7 +177,7 @@ return [
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
 
-        Livewire\LivewireServiceProvider::class,
+
 
     ],
 

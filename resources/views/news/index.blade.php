@@ -63,6 +63,11 @@
                                     <md-card-actions>
 
                                         <div class="float-left">
+                                            @guest
+                                            <md-button class="text-decoration-none" href="{{route('news.show', $onenews->id)}}">
+                                                К прочтению
+                                            </md-button>
+                                            @else
                                             <md-button class="text-decoration-none d-inline-block" href="{{route('news.edit', $onenews->id)}}">
                                                 Редактировать
                                              </md-button>
@@ -76,6 +81,7 @@
                                             <md-button class="text-decoration-none" href="{{route('news.show', $onenews->id)}}">
                                                 К прочтению
                                             </md-button>
+                                            @endguest
                                         </div>
 
                                     </md-card-actions>

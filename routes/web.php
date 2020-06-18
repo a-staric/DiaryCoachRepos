@@ -25,10 +25,13 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/', 'HomeController@welcome')->name('welcome');
+Route::get('/student/archive','Students\StudentController@archive')->name('student.archive');
+Route::post('/student/recover/{student}','Students\StudentController@recover')->name('student.recover');
 
 Route::group(['namespace' => 'Students', 'prefix' => ''], function(){
 
     Route::resource('student', 'StudentController')->names('student');
+
 
 });
 
