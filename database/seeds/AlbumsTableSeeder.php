@@ -66,7 +66,7 @@ class AlbumsTableSeeder extends Seeder
                 'is_news' => true,
             ],
             [
-                'name' => 'Что почитать о беге и зож?',
+                'name' => 'Поздравляем Никифоренко Алексея с обновлением личных рекордов',
                 'is_news' => true,
             ],
         ];

@@ -66,7 +66,6 @@ class StudentsTest extends TestCase
         $response = $this->actingAs($user)->call('get','/student/create');
         $this->assertEquals(200, $response->status());
 
-
         factory('App\Student')->create([
             'last_name' => 'Starichenko',
             'first_name' => 'Andrei',
@@ -76,7 +75,6 @@ class StudentsTest extends TestCase
             'description' => 'brief description by athletes',
         ]);
 
-
         $this->assertDatabaseHas('students', [
             'last_name' => 'Starichenko',
         ]);
@@ -84,7 +82,6 @@ class StudentsTest extends TestCase
         $this->assertDatabaseMissing('students', [
             'last_name' => 'Starichenko1',
         ]);
-
     }
 
      /** @test */

@@ -35,6 +35,10 @@ class PhotoController extends Controller
             'album_id' => 'required',
        ]);
 
+       if(empty($request->path))
+        return back();
+
+
         $imgNames = [];
         $album_id = $request['album_id'];
         foreach($request->path as $pat){

@@ -1,9 +1,20 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-dark p-0">
     <md-toolbar class="md-primary">
-        <md-button class="md-icon-button bg-danger m-2">
+          @guest
+          <md-button class="md-icon-button bg-danger m-2 text-decoration-none" href="{{ url('/') }}">
             <md-icon>directions_run</md-icon>
           </md-button>
-                <h2 class="md-title" style="flex:1">{{ config('app.name', 'Laravel') }}</h2>
+          @else
+          <md-button class="md-icon-button bg-danger m-2 text-decoration-none" href="{{ url('/home') }}">
+            <md-icon>directions_run</md-icon>
+          </md-button>
+          @endguest
+                {{-- <h2 class="md-title" style="flex:1">{{ config('app.name', 'Laravel') }}</h2> --}}
+
+                <h2 class="md-title" style="flex:1"  data-toggle="modal"
+                data-target="#{{date_format(date_create(now()),"Fd")}}"
+                >{{ config('app.name', 'Laravel') }}</h2>
+
 
 
                 <md-button class="navbar-toggler md-icon-button" type="button" data-toggle="collapse"
@@ -14,7 +25,7 @@
 
                 <div class=" collapse navbar-collapse" id="navbarTop">
                     <ul class="navbar-nav ml-auto">
-                        
+
                         @guest
                         {{-- гость --}}
                         @include('layouts.components.forNavbarTop.nav_guest')

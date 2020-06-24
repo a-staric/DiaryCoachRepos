@@ -31,7 +31,7 @@
           </div>
       </div>
     </div>
-    
+
     <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
       <span class="carousel-control-prev-icon" aria-hidden="true"></span>
       <span class="sr-only">Previous</span>
@@ -43,7 +43,27 @@
   </div>
 
 
+  <div class="modal fade" id="{{date_format(date_create(now()),"Fd")}}" tabindex="-1" role="dialog" aria-labelledby="{{date_format(date_create(now()),"Fd")}}" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+        <div class="modal-header">
+        {{-- <h5 class="modal-title">{{$item->competitions->name}}</h5> --}}
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+        </div>
+        <div class="modal-body">
+        <p>Тренер:</p>
+        <strong>{{$coach->last_name}} {{$coach->first_name}}</strong>
+        <hr>
+        <p>Связаться:</p>
+        <strong>email:</strong>
+        <a href="mailto:{{$coach->email}}" target="_blank" rel="noopener noreferrer">{{$coach->email}}</a>
 
+        </div>
+        </div>
+    </div>
+</div>
 {{-- <a href="{{asset('storage/file.txt')}}">Открыть справку</a> --}}
 @endsection
 

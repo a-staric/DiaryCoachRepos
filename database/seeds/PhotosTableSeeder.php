@@ -170,6 +170,72 @@ class PhotosTableSeeder extends Seeder
                 'created_at' => Carbon::now(),
                 'updated_at' => Carbon::now(),
             ],
+            [
+                'path' => 'comp7_1.jpg',
+                'album_id' => 7,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'path' => 'comp7_2.jpg',
+                'album_id' => 7,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'path' => 'comp7_3.jpg',
+                'album_id' => 7,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'path' => 'news1_1.jpg',
+                'album_id' => 8,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'path' => 'news1_2.jpg',
+                'album_id' => 8,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'path' => 'news2_1.jpg',
+                'album_id' => 9,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'path' => 'news3_1.jpg',
+                'album_id' => 10,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'path' => 'news4_1.jpg',
+                'album_id' => 11,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'path' => 'news5_1.jpg',
+                'album_id' => 12,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'path' => 'news6_1.jpg',
+                'album_id' => 13,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
+            [
+                'path' => 'news7_1.jpg',
+                'album_id' => 14,
+                'created_at' => Carbon::now(),
+                'updated_at' => Carbon::now(),
+            ],
         ];
 
         DB::table('photos')->insert($photos);
